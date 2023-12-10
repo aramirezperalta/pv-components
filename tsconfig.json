@@ -9,9 +9,9 @@
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
       "declaration": true,
-      "outDir": "./dist"
+      "outDir": "./dist",
+      "declarationMap": true,
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"]
-  }
-  
+}

@@ -5,7 +5,11 @@ interface AlertProps {
 }
 
 const Alert: React.FC<AlertProps> = ({ message }) => {
-  return (<><div>{message}</div></>);
+  return (<>
+      <div className={'block text-sm font-medium leading-6 bg-blue-500 p-20'}>
+        {message}
+      </div>
+    </>);
 };
 
 export default Alert;

@@ -1,5 +1,4 @@
-import './index.css';
-export { default as Button } from './Button';
-export { default as Alert } from './Alert';
-export { default as InputComponents } from './InputComponents';
+export { default as Button } from './components/Button';
+export { default as Alert } from './components/Alert';
+export { default as InputComponents } from './components/InputComponents';
 

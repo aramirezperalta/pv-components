@@ -5,11 +5,12 @@ module.exports = {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/bundle.cjs.js',
+      file: 'dist/index.js', // Ajusta la salida principal a tu configuración
       format: 'cjs',
+      sourcemap: true,
     },
     {
-      file: 'dist/bundle.esm.js',
+      file: 'dist/index.esm.js', // Ajusta la salida principal a tu configuración
       format: 'esm',
     },
   ],

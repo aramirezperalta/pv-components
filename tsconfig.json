@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es5",
+      "target": "esnext",
       "module": "esnext",
       "jsx": "react",
       "strict": true,
@@ -9,8 +9,7 @@
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
       "declaration": true,
-      "outDir": "./dist",
-      "declarationMap": true,
+      "outDir": "./dist"
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"]

@@ -1,6 +1,4 @@
-'use strict';
-
-var React = require('react');
+import React from 'react';
 
 var Button = function (_a) {
     var label = _a.label;
@@ -14,5 +12,4 @@ var Alert = function (_a) {
         React.createElement("div", null, message)));
 };
 
-exports.Alert = Alert;
-exports.Button = Button;
+export { Alert, Button };

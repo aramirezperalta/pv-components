@@ -5,5 +5,5 @@ interface IPropsInput {
     type: string;
     placeholder?: string;
 }
-export default function InputExample(props: IPropsInput): React.JSX.Element;
-export {};
+declare const InputComponents: React.FC<IPropsInput>;
+export default InputComponents;

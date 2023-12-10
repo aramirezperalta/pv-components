@@ -7,7 +7,7 @@ interface IPropsInput {
     placeholder?: string;
 }
 
-export default function InputExample(props: IPropsInput) {
+const InputComponents: React.FC<IPropsInput> = (props) => {
   return (
     <>
       <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
@@ -24,3 +24,5 @@ export default function InputExample(props: IPropsInput) {
     </>
   );
 }
+
+export default InputComponents;

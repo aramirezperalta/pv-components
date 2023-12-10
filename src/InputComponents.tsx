@@ -1,10 +1,10 @@
 import React from 'react';
 
 interface IPropsInput {
-    name: string;
-    label: string;
-    type: string;
-    placeholder?: string;
+  name: string;
+  label: string;
+  type: string;
+  placeholder?: string;
 }
 
 const InputComponents: React.FC<IPropsInput> = (props) => {
@@ -26,3 +26,4 @@ const InputComponents: React.FC<IPropsInput> = (props) => {
 }
 
 export default InputComponents;
+

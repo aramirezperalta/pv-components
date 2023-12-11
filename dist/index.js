@@ -2842,23 +2842,78 @@ if (process.env.NODE_ENV === 'production') {
 }
 });
 
-const Button = ({ label }) => {
+var InputComponents = function (props) {
     return (react.createElement(react.Fragment, null,
-        react.createElement("button", null, label)));
-};
-
-const Alert = ({ message }) => {
-    return (react.createElement(react.Fragment, null,
-        react.createElement("div", { className: 'block text-sm font-medium leading-6 bg-blue-500 p-20' }, message)));
-};
-
-const InputComponents = (props) => {
-    return (react.createElement(react.Fragment, null,
-        react.createElement("label", { htmlFor: "email", className: "block text-sm font-medium leading-6 text-gray-900" }, props.label),
+        props.icon ?
+            react.createElement("div", { className: 'grid grid-cols-12 gap-4' },
+                react.createElement("div", { className: 'col-span-1' }, props.icon),
+                react.createElement("div", { className: 'col-span-10' },
+                    react.createElement("label", { htmlFor: props.name, className: props.classLabel },
+                        "\u00A0 ",
+                        props.label,
+                        " "))) : props.label ? react.createElement("label", { htmlFor: props.name, className: props.classLabel },
+            "\u00A0 ",
+            props.label,
+            " ") : null,
         react.createElement("div", { className: "mt-2" },
-            react.createElement("input", { type: props.type, name: props.name, className: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", placeholder: props.placeholder ? props.placeholder : '' }))));
+            react.createElement("input", { type: props.type, id: props.id, name: props.name, className: props.classAdditional ? props.classAdditional : 'block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6', placeholder: props.placeholder, onChange: props.onChange, defaultValue: props.value, required: props.requiredFiels, autoComplete: props.autoCompleteInput === true ? 'on' : 'off', disabled: props.disable, min: 0, maxLength: props.max }))));
 };
 
-exports.Alert = Alert;
-exports.Button = Button;
+var SelectComponents = function (props) {
+    return (react.createElement(react.Fragment, null,
+        props.label ? react.createElement(react.Fragment, null,
+            react.createElement("label", { htmlFor: props.name, className: "block text-sm font-medium leading-6 text-gray-900" }, props.label)) : null,
+        react.createElement("select", { name: props.name, onChange: props.onChange, className: props.classAdditional ? props.classAdditional : 'mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6', defaultValue: props.defaultValue }, props.data.map(function (item) { return (react.createElement(react.Fragment, null,
+            react.createElement("option", null,
+                " ",
+                item,
+                " "))); }))));
+};
+
+var ModalComponents = function (_a) {
+    var isOpen = _a.isOpen, onClose = _a.onClose, children = _a.children;
+    react.useEffect(function () {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden'; // Evita que el fondo de la página se desplace cuando el modal está abierto
+        }
+        else {
+            document.body.style.overflow = 'unset'; // Restaura el comportamiento de desplazamiento normal
+        }
+        return function () {
+            document.body.style.overflow = 'unset'; // Asegura que el comportamiento de desplazamiento se restablezca cuando el componente se desmonta
+        };
+    }, [isOpen]);
+    return (react.createElement(react.Fragment, null,
+        react.createElement("div", { className: "fixed inset-0 flex p-2 items-start justify-center z-50 ".concat(isOpen ? 'block' : 'hidden') },
+            react.createElement("div", { className: "fixed inset-0 bg-black opacity-50", onClick: onClose }),
+            react.createElement("div", { className: "bg-white rounded-lg p-1 z-50 overflow-auto" },
+                react.createElement("div", { className: 'flex justify-end pb-4' },
+                    react.createElement("button", { className: "hover:bg-gray-100 flex py-1 px-1 rounded", onClick: onClose },
+                        react.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", "stroke-width": "1.5", stroke: "currentColor", className: "w-6 h-6 text-slate-700" },
+                            react.createElement("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })))),
+                children))));
+};
+
+var StatsComponents = function (props) {
+    return (react.createElement(react.Fragment, null,
+        react.createElement("dl", { className: "mx-auto grid grid-cols-1 gap-px bg-gray-900/5 sm:grid-cols-2 lg:grid-cols-4" }, props.data.map(function (item) { return (react.createElement(react.Fragment, null,
+            react.createElement("div", { className: "flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-white px-4 py-10 sm:px-6 xl:px-8" },
+                react.createElement("dt", { className: "text-sm font-medium leading-6 text-gray-500" }, item.title),
+                react.createElement("dd", { className: "text-xs font-medium text-gray-700" }, item.porcentage),
+                react.createElement("dd", { className: "w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900" }, item.value)))); }))));
+};
+
+var TextareaComponents = function (props) {
+    return (react.createElement(react.Fragment, null,
+        react.createElement("div", { className: "sm:col-span-2" },
+            props.label ? react.createElement(react.Fragment, null,
+                react.createElement("label", { htmlFor: props.name, className: "block text-sm font-medium leading-6 text-gray-900" }, props.label)) : null,
+            react.createElement("div", { className: "mt-2.5" },
+                react.createElement("textarea", { name: props.name, defaultValue: props.defaultValue, rows: props.rows, onChange: props.onChange, className: props.classAdditional ? props.classAdditional : "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" })))));
+};
+
 exports.InputComponents = InputComponents;
+exports.ModalComponents = ModalComponents;
+exports.SelectComponents = SelectComponents;
+exports.StatsComponents = StatsComponents;
+exports.TextareaComponents = TextareaComponents;

@@ -2,7 +2,7 @@ import React from 'react';
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    children: React.ReactNode | React.ReactElement;
+    children: any;
 }
 declare const ModalComponents: React.FC<ModalProps>;
 export default ModalComponents;

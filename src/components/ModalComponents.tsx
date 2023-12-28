@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    children: ReactNode;
+    children: React.ReactNode | React.ReactElement;
 }
 
 const ModalComponents: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {

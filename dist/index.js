@@ -2870,10 +2870,9 @@ var SelectComponents = function (props) {
                 " "))); }))));
 };
 
-var ModalComponents = function (_a) {
-    var isOpen = _a.isOpen, onClose = _a.onClose, children = _a.children;
+var ModalComponents = function (props) {
     react.useEffect(function () {
-        if (isOpen) {
+        if (props.isOpen) {
             document.body.style.overflow = 'hidden'; // Evita que el fondo de la página se desplace cuando el modal está abierto
         }
         else {
@@ -2882,16 +2881,16 @@ var ModalComponents = function (_a) {
         return function () {
             document.body.style.overflow = 'unset'; // Asegura que el comportamiento de desplazamiento se restablezca cuando el componente se desmonta
         };
-    }, [isOpen]);
+    }, [props.isOpen]);
     return (react.createElement(react.Fragment, null,
-        react.createElement("div", { className: "fixed inset-0 flex p-2 items-start justify-center z-50 ".concat(isOpen ? 'block' : 'hidden') },
-            react.createElement("div", { className: "fixed inset-0 bg-black opacity-50", onClick: onClose }),
+        react.createElement("div", { className: "fixed inset-0 flex p-2 items-start justify-center z-50 ".concat(props.isOpen ? 'block' : 'hidden') },
+            react.createElement("div", { className: "fixed inset-0 bg-black opacity-50", onClick: props.onClose }),
             react.createElement("div", { className: "bg-white rounded-lg p-1 z-50 overflow-auto" },
                 react.createElement("div", { className: 'flex justify-end pb-4' },
-                    react.createElement("button", { className: "hover:bg-gray-100 flex py-1 px-1 rounded", onClick: onClose },
+                    react.createElement("button", { className: "hover:bg-gray-100 flex py-1 px-1 rounded", onClick: props.onClose },
                         react.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", "stroke-width": "1.5", stroke: "currentColor", className: "w-6 h-6 text-slate-700" },
                             react.createElement("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })))),
-                children))));
+                props.children))));
 };
 
 var StatsComponents = function (props) {

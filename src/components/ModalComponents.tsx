@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface ModalProps {
     isOpen: boolean;
@@ -7,7 +7,7 @@ interface ModalProps {
 }
 
 const ModalComponents: React.FC<ModalProps> = (props: ModalProps) => {
-    useEffect(() => {
+    React.useEffect(() => {
         if (props.isOpen) {
             document.body.style.overflow = 'hidden'; // Evita que el fondo de la página se desplace cuando el modal está abierto
         } else {

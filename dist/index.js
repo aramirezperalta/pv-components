@@ -2871,26 +2871,21 @@ var SelectComponents = function (props) {
 };
 
 var ModalComponents = function (props) {
-    react.useEffect(function () {
-        if (props.isOpen) {
-            document.body.style.overflow = 'hidden'; // Evita que el fondo de la página se desplace cuando el modal está abierto
-        }
-        else {
-            document.body.style.overflow = 'unset'; // Restaura el comportamiento de desplazamiento normal
-        }
-        return function () {
-            document.body.style.overflow = 'unset'; // Asegura que el comportamiento de desplazamiento se restablezca cuando el componente se desmonta
-        };
-    }, [props.isOpen]);
-    return (react.createElement(react.Fragment, null,
-        react.createElement("div", { className: "fixed inset-0 flex p-2 items-start justify-center z-50 ".concat(props.isOpen ? 'block' : 'hidden') },
-            react.createElement("div", { className: "fixed inset-0 bg-black opacity-50", onClick: props.onClose }),
-            react.createElement("div", { className: "bg-white rounded-lg p-1 z-50 overflow-auto" },
-                react.createElement("div", { className: 'flex justify-end pb-4' },
-                    react.createElement("button", { className: "hover:bg-gray-100 flex py-1 px-1 rounded", onClick: props.onClose },
-                        react.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", "stroke-width": "1.5", stroke: "currentColor", className: "w-6 h-6 text-slate-700" },
-                            react.createElement("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })))),
-                props.children))));
+    return (react.createElement(react.Fragment, null, props.isOpen ?
+        react.createElement(react.Fragment, null,
+            react.createElement("div", { className: "relative z-50", "aria-labelledby": "modal-title", role: "dialog", "aria-modal": "true" },
+                react.createElement("div", { className: "fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" }),
+                react.createElement("div", { className: "fixed inset-0 z-10 w-screen overflow-y-auto" },
+                    react.createElement("div", { className: "flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0" },
+                        react.createElement("div", { className: "relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full ".concat(props.size ? props.size : 'sm:max-w-sm') },
+                            react.createElement("div", { className: "flex justify-between items-center mb-2" },
+                                react.createElement("h2", { className: "text-lg font-semibold" }, props.title),
+                                react.createElement("button", { type: "button", onClick: props.onClose, className: "rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" },
+                                    react.createElement("span", { className: "sr-only" }, "Close"),
+                                    react.createElement("svg", { className: "h-6 w-6", fill: "none", viewBox: "0 0 24 24", "stroke-width": "1.5", stroke: "currentColor", "aria-hidden": "true" },
+                                        react.createElement("path", { "stroke-linecap": "round", "stroke-linejoin": "round", d: "M6 18L18 6M6 6l12 12" })))),
+                            react.createElement("hr", null),
+                            react.createElement("div", null, props.children)))))) : null));
 };
 
 var StatsComponents = function (props) {
